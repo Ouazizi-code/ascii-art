@@ -1,25 +1,25 @@
 package main
 
 import (
+	"ascii-art/functions"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
+	// check the args befor extracting our args
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: go run main.go <string>")
 		return
 	}
 
-	firstString := os.Args[1]
-	data, err := os.ReadFile("standard.txt")
-	if err != nil {
-		fmt.Println("Error reading file:", err)
-		return
-	}
-	fileContent := string(data)
-	fileLines := strings.Split(fileContent, "\n")
+	// extract data from the standard file as an array of caracters
+	data := functions.ReadFile("standard.txt")
+	fmt.Println(data)
+
+	// now extraxt our text from the args
+	str := os.Args[1]
+	fmt.Println(str)
 
 	// Prepare an array for each line of the final output
 	result := make([]string, 8) // Assuming each character is represented by 8 lines
@@ -44,7 +44,9 @@ func main() {
 	}
 
 	// Print the final result
+
 	for _, line := range result {
 		fmt.Println(line)
 	}
+
 }
