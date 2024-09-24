@@ -8,7 +8,6 @@ import (
 
 // this func just to read the standard file
 func ReadFile(filename string) []string {
-
 	data, err := os.ReadFile(filename)
 	// handle err
 	if err != nil {
@@ -17,16 +16,16 @@ func ReadFile(filename string) []string {
 
 	result := strings.Split(string(data), "\n")
 	return result
-
 }
 
 // this function for traitment
 func Traitment(str string, data []string) {
-	//result := ""
+	// result := ""
 	arr := make([]string, 8)
 	splited_string := strings.Split(str, `\n`)
 
 	/////////////////////////////////
+	// this part just for newlines
 	status := 0
 	for _, test := range splited_string {
 		if test == "" {
@@ -34,12 +33,15 @@ func Traitment(str string, data []string) {
 		}
 	}
 	if status == (len(str)/2)+1 {
-		for i := 0; i <(len(str)/2) ; i++ {
-			fmt.Println("good")
+		for i := 0; i < (len(str) / 2); i++ {
+			fmt.Println()
 		}
 		return
+		// than return the programe strictly
 	}
 	//////////////////////////////////////
+
+	// if  the input not just newlines keep processing
 
 	// loop throught the splited string as an array of indexes
 	for _, part := range splited_string {
@@ -54,16 +56,12 @@ func Traitment(str string, data []string) {
 			startIndex := int(asci)*8 + int(asci) + 1
 			// lets check if our caracter is printable or not
 			if char < 32 || char > 126 {
-				fmt.Println("ereur : this caracter is not in range => ", "'", string(char), "'")
-				os.Exit(1)
+				fmt.Println("ereur : one of this  caracters is not  in range ")
+				return
 			} else {
-
 				for j := 0; j < 8; j++ {
 					arr[j] += data[startIndex+j]
 				}
-
-				//arr[8][len(part)*8] += byte("\n")
-
 			}
 		}
 
@@ -89,5 +87,4 @@ func Traitment(str string, data []string) {
 		arr = make([]string, 8)
 
 	}
-
 }

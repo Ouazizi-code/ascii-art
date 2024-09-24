@@ -1,9 +1,10 @@
 package main
 
 import (
-	"ascii-art/functions"
 	"fmt"
 	"os"
+
+	"ascii-art/functions"
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 
 	// now extraxt our text from the args
 	str := os.Args[1]
-
+ 
+	// send this args to trairment and print inside this function
 	functions.Traitment(str, data)
 }
